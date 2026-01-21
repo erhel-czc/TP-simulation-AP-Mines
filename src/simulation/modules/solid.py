@@ -1,13 +1,13 @@
 class Solid:
-    def __init__(self, x1: int, y1: int, x2: int | None, y2: int | None, radius: int | None) -> None:
-        self.x1 = x1
-        self.y1 = y1
-        self.x2 = x2
-        self.y2 = y2
+    def __init__(self, position_x: int, position_y: int, radius: int | None) -> None:
+        self.position_x = position_x
+        self.position_y = position_y
         self.radius = radius
 
     def cercle(self):
-        pass
+        super().__init__(self,800,800,50)
+        self.radius = 5
+
 
     def rectangle(self):
         pass
