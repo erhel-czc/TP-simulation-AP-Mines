@@ -12,3 +12,6 @@ dist/
 # IDE
 .vscode/
 .idea/
+
+# Fichiers de configuration locaux
+uv.lock
