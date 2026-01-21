@@ -1,4 +1,5 @@
 import arcade
+import modules.human
 
 class Window(arcade.Window):
     def __init__(self, width, height, title):
