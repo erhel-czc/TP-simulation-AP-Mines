@@ -1,13 +1,19 @@
-class Solid:
-    def __init__(self, x1: int, y1: int, x2: int | None, y2: int | None, radius: int | None) -> None:
-        self.x1 = x1
-        self.y1 = y1
-        self.x2 = x2
-        self.y2 = y2
+import numpy as np
+
+class Obstacle:
+    def __init__(self, position, radius=1.0):
+        self.position = np.array(position, dtype=float)
         self.radius = radius
 
-    def cercle(self):
-        pass
+    def contains(self, point):
+        """
+        Test si un point est à l'intérieur de l'obstacle
+        """
+        return np.linalg.norm(point - self.position) < self.radius
 
-    def rectangle(self):
-        pass
+
+def cercle(self):
+     pass
+
+def rectangle(self):
+    pass
