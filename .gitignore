@@ -1,0 +1,14 @@
+# Environnement virtuel
+.venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Build
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
