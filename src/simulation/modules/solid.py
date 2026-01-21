@@ -6,14 +6,5 @@ class Obstacle:
         self.radius = radius
 
     def contains(self, point):
-        """
-        Test si un point est à l'intérieur de l'obstacle
-        """
         return np.linalg.norm(point - self.position) < self.radius
 
-
-def cercle(self):
-     pass
-
-def rectangle(self):
-    pass
