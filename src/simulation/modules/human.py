@@ -9,15 +9,14 @@ def sign(x: float) -> int:
     else:
         return 0
 
-class Human(arcade.Sprite):
+class Human(arcade.SpriteCircle):
     """store alle humans created in a list called humans"""
     humans: list["Human"] = []
 
     def __init__(self, init_x: int, init_y: int, size: int, max_speed: int, d_0: int) -> None:
-        super().__init__()
+        super().__init__(size, arcade.color.BLUE)
         self.center_x = init_x
         self.center_y = init_y
-        self.human_size = size
         self.max_speed = max_speed
         self.d_0 = d_0
         
@@ -25,11 +24,10 @@ class Human(arcade.Sprite):
 
     def move(self) -> None:
         delta_x, delta_y = self.compute_deltas()
-        self.center_x += delta_x
+        self.center_x += delta_x + self.max_speed
         self.center_y += delta_y
 
     def compute_deltas(self) -> tuple[float, float]:
-        # create a list with all other humans
         other_humans = [human for human in Human.humans if human != self]
 
         delta_x = 0.0
