@@ -14,7 +14,7 @@ class Window(arcade.Window):
 
         self.humans = [Human(randint(0, self.width),
                              randint(0, self.height),
-                             10, 5, 50) for _ in range(50)]
+                             10, 2, 50) for _ in range(100)]
 
         for human in self.humans:
             self.sprites.append(human)

@@ -23,9 +23,23 @@ class Human(arcade.SpriteCircle):
         Human.humans.append(self)
 
     def move(self) -> None:
+        self.check_bounds()
+        
         delta_x, delta_y = self.compute_deltas()
+
         self.center_x += delta_x + self.max_speed
         self.center_y += delta_y
+
+    def check_bounds(self) -> None:
+        if self.center_x < 0:
+            self.center_x = 0
+        elif self.center_x > 800:
+            self.center_x = 0
+
+        if self.center_y < 0:
+            self.center_y = 0
+        elif self.center_y > 600:
+            self.center_y = 600
 
     def compute_deltas(self) -> tuple[float, float]:
         other_humans = [human for human in Human.humans if human != self]
