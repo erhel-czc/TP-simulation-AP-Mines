@@ -10,7 +10,7 @@ def sign(x: float) -> int:
         return 0
 
 class Human(arcade.SpriteCircle):
-    """store alle humans created in a list called humans"""
+    # store all humans created in a list called humans 
     humans: list["Human"] = []
 
     def __init__(self, init_x: int, init_y: int, size: int, max_speed: int,
