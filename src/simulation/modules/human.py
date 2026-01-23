@@ -13,13 +13,16 @@ class Human(arcade.SpriteCircle):
     """store alle humans created in a list called humans"""
     humans: list["Human"] = []
 
-    def __init__(self, init_x: int, init_y: int, size: int, max_speed: int, d_0: int) -> None:
+    def __init__(self, init_x: int, init_y: int, size: int, max_speed: int,
+                 d_0: int, width: int, height: int) -> None:
         super().__init__(size, arcade.color.BLUE)
         self.center_x = init_x
         self.center_y = init_y
         self.max_speed = max_speed
         self.d_0 = d_0
-        
+        self.screen_width = width
+        self.screen_height = height
+
         Human.humans.append(self)
 
     def move(self) -> None:
@@ -33,13 +36,13 @@ class Human(arcade.SpriteCircle):
     def check_bounds(self) -> None:
         if self.center_x < 0:
             self.center_x = 0
-        elif self.center_x > 800:
+        elif self.center_x > self.screen_width:
             self.center_x = 0
 
         if self.center_y < 0:
             self.center_y = 0
-        elif self.center_y > 600:
-            self.center_y = 600
+        elif self.center_y > self.screen_height:
+            self.center_y = self.screen_height
 
     def compute_deltas(self) -> tuple[float, float]:
         other_humans = [human for human in Human.humans if human != self]
