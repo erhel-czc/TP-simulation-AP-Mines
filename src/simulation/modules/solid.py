@@ -1,9 +1,42 @@
 import numpy as np
+import arcade
+from random import randint, choice
 
-class Obstacle:
-    def __init__(self, position, radius=1.0):
-        self.position = np.array(position, dtype=float)
-        self.radius = radius
 
-    def contains(self, point):
-        return np.linalg.norm(point - self.position) < self.radius
+class Solid(arcade.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+
+        self.width = randint(120, 200)
+        self.height = randint(100, 150)
+
+
+        self.center_x = x
+        self.center_y = y
+        
+        # Choix aléatoire de la forme
+        shape = choice(["ellipse", "rectangle"])
+
+        if shape == "ellipse":
+            diameter = min(self.width, self.height)
+            self.texture = arcade.make_circle_texture(
+                diameter,
+                arcade.color.DARK_GREEN
+            )
+
+
+        elif shape == "rectangle":
+            self.texture = arcade.make_soft_square_texture(
+                max(self.width, self.height),
+                arcade.color.DARK_BLUE,
+                outer_alpha=255
+            )
+
+    #pour que le départ et l'arrivée ne se superposent pas 
+    def collides_with(self, other):
+        dx = self.center_x - other.center_x
+        dy = self.center_y - other.center_y
+        distance = (dx**2 + dy**2) ** 0.5
+
+        min_distance = (self.width + other.width) / 2
+        return distance < min_distance

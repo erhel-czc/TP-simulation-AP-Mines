@@ -1,6 +1,8 @@
 import arcade
 from modules.human import Human
 from random import randint
+from modules.solid import Solid 
+
 
 class Window(arcade.Window):
     ## créer deux humains et les afficher
@@ -19,6 +21,17 @@ class Window(arcade.Window):
 
         for human in self.humans:
             self.sprites.append(human)
+
+        self.start = Solid(randint(50, self.width - 50), randint(50, self.height - 50))
+
+        while True:
+            self.end = Solid(randint(50, self.width - 50), randint(50, self.height - 50))
+            if not self.end.collides_with(self.start):
+                break
+
+
+        self.sprites.append(self.start)
+        self.sprites.append(self.end)
 
     def on_draw(self):
         self.clear()
